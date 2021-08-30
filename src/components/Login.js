@@ -3,11 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import "./Login.css"
 import { login } from '../features/userSlice';
-import { Redirect } from 'react-router-dom';
-import { Link,Switch,Route , BrowserRouter} from 'react-router-dom';
-import {withRouter} from 'react-router';
 import axios from 'axios';
-
 
 const Login = () => {
     const [email,setEmail] = useState("");
@@ -19,25 +15,23 @@ const Login = () => {
         var data = {email:email,password:password}
         axios
         .post(
-          "http://localhost:4000/sessions",
+          "http://localhost:3001/auth/login",
           {
-            user_detail: {
+          
               email: email,
               password: password
-              
-            }
-            
-          },
-          { withCredentials: true }
+                          
+          }
         )
         .then(response => {
-          if (response.data.logged_in) {
+          if (response.statusText== "Created") {
             debugger
-            console.log(response.data.logged_in);
+            console.log(response.data);
              dispatch(
             login({
               data,
               loggedIn: true,
+              registeredIn: true,
             })
           );
           setEmail("");
@@ -63,14 +57,7 @@ const Login = () => {
              <button type="submit" className="submit_button">Submit </button>
              
           </form>
-          {/* <BrowserRouter><Route exact path="/" component={withRouter(Registration)} />
-   
-    </BrowserRouter> */}
-  
-        
-         
         </div>
     )
 }
-
 export default Login

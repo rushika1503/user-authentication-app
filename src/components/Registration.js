@@ -8,31 +8,40 @@ import axios from 'axios';
 
 const Registration = () => {
     const [email,setEmail] = useState("");
+    const [name,setName] = useState("");
+    const [userName,setUserName] = useState("");
     const [password,setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
-        // const {
-        //   email,
-        //   password,
-        //   confirmPassword
-        // } = this.state; 
-        // debugger
+      var data = {  name :name,
+        username :userName,
+        email :email, 
+        password :password,
+        password_confirmation: confirmPassword}
        
-        axios.post("http://localhost:4000/registrations",{
-          user_detail: {
+        axios.post("http://localhost:3001/users",{
+           
+            name :name,
+            username :userName,
             email :email, 
             password :password,
             password_confirmation: confirmPassword
-          }
           
-        },
-        {withCredentials: true }
+          
+        }
         ).then(response => {
           debugger
           console.log("registration res", response);
+          dispatch(
+            registration({
+              data,
+              registeredIn: true,
+              loggedIn: false,
+            })
+          );
         }).catch(error => {
           debugger
           console.log("registration err",error);
@@ -53,6 +62,9 @@ const Registration = () => {
         <div className="login">
           <form className="login_form" onSubmit={(e) => handleSubmit(e)} >
              <h1>Register Here</h1>
+             <input type="name" placeholder="NAme" value={name} onChange={(e) => setName(e.target.value)} />
+             <input type="userName" placeholder="Username" value={userName}  onChange={(e) => setUserName(e.target.value)} />
+            
              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
              <input type="password" placeholder="Password" value={password}  onChange={(e) => setPassword(e.target.value)} />
              <input type="password" placeholder="ConfirmPassword " value={confirmPassword}  onChange={(e) => setConfirmPassword(e.target.value)} />

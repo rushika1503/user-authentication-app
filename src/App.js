@@ -15,8 +15,11 @@ const App= () => {
     <div>
       {/* <Navbar/> */} 
       {user ? <Logout/> : <Login/>}
-      {/* <Registration/> */}
-      {/* <Login/> */}
+      <Registration/>
+    
+{/*     
+      {user==null} ? <Registration/> : {user? <Logout/> : <Login/>} */}
+   
     </div>
   );
 }
