@@ -32,6 +32,7 @@ const Login = () => {
               data,
               loggedIn: true,
               registeredIn: true,
+              
             })
           );
           setEmail("");
@@ -54,8 +55,7 @@ const Login = () => {
              <h1>Login Here</h1>
              <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
              <input type="password" placeholder="Password" value={password}  onChange={(e) => setPassword(e.target.value)} />
-             <button type="submit" className="submit_button">Submit </button>
-             
+             <button type="submit" className="submit_button">Submit </button> 
           </form>
         </div>
     )
