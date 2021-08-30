@@ -15,6 +15,7 @@ export const userSlice = createSlice({
            console.log(action);
         },
         registration: (state,action) => {
+            debugger
             state.user = action.payload;
         },
         logout: (state) => {
