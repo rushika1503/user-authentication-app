@@ -11,31 +11,44 @@ import Navbar from './components/Navbar';
 
 function App() {
   const user = useSelector(selectUser);  
+  debugger
   var registered = false;
+  var loggedIn = false;
   
     if(user)
-    {debugger
+    {
       if(user.registeredIn==true && user.loggedIn==false)
       {
       registered = true;
-    
       }
+      else
+      loggedIn = true;
+
     }
   
   return (<Router>
     <div >
       <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
-          <Link className="navbar-brand" to={"/home"}>Authentication.io</Link>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <Link className="nav-link" to={"/login"}>Login</Link>
-              </li> 
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-              </li>
-            </ul>
+
+            {registered && (<>  <Link to="/login">
+                Login
+              </Link> </>)
+
+            }
+            {!registered && (<>  <Link to="/login">
+                Login
+              </Link>
+              <li></li>
+              { !loggedIn && ( <>
+              <Link to='/sign-up'>
+                SignUp
+              </Link>  </> ) }
+              </>)
+            }
+           
+
           </div>
         </div>
       </nav>
@@ -44,7 +57,7 @@ function App() {
         <div className="auth-inner">
           <Switch>
             <Route path="/home" component={Navbar} />
-            {user ?  <Route path="/login" component={Logout} /> :<Route path="/login" component= {Login} /> }
+            {loggedIn ?  <Route path="/login" component={Logout} /> :<Route path="/login" component= {Login} /> }
             {registered? <Route path="/sign-up" component={RegisterSuccessfull} /> :   <Route path="/sign-up" component={Registration} /> }
             <Route path="/sign-up" component={Registration} />
           </Switch>
