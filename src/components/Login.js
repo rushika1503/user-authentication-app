@@ -18,7 +18,7 @@ const Login = () => {
         var data = {email:email,password:password}
         axios
         .post(
-          "http://localhost:3001/auth/login",
+          "https://rails-api-jwt-verification.herokuapp.com/auth/login",
           {
               email: email,
               password: password              

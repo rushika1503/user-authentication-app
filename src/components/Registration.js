@@ -26,7 +26,7 @@ const Registration = () => {
         password :password,
         password_confirmation: confirmPassword}
        
-        axios.post("http://localhost:3001/users",{
+        axios.post("https://rails-api-jwt-verification.herokuapp.com/users",{
             name :name,
             username :userName,
             email :email, 
