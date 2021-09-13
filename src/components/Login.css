@@ -41,3 +41,7 @@ letter-spacing: -1px;
     font-family: "Inter";
     border-radius: 3px;
 }
+
+#error-msg {
+color: red;
+}

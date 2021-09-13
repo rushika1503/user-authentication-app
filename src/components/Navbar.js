@@ -9,7 +9,6 @@ const Navbar= () => {
       <h2>
         This is a React-Reudx Application which is used for basic Authentication. Here I used Rails-JWT based API for backend.
       </h2>
-     
     </form>
     );
   }
